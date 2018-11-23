@@ -46,7 +46,7 @@ PlugEdit::PlugEdit (PluginwithGuiAudioProcessor& p)
     slider_x->setColour (Slider::textBoxOutlineColourId, Colour (0x008e989b));
     slider_x->addListener (this);
 
-    slider_x->setBounds (536, 208, 160, 88);
+    slider_x->setBounds (576, 208, 160, 88);
 
     slider_y.reset (new Slider ("slider_y"));
     addAndMakeVisible (slider_y.get());
@@ -56,7 +56,7 @@ PlugEdit::PlugEdit (PluginwithGuiAudioProcessor& p)
     slider_y->setColour (Slider::textBoxOutlineColourId, Colour (0x008e989b));
     slider_y->addListener (this);
 
-    slider_y->setBounds (536, 312, 160, 88);
+    slider_y->setBounds (576, 320, 160, 88);
 
     slider_z.reset (new Slider ("slider_z"));
     addAndMakeVisible (slider_z.get());
@@ -67,7 +67,7 @@ PlugEdit::PlugEdit (PluginwithGuiAudioProcessor& p)
     slider_z->setColour (Slider::textBoxOutlineColourId, Colour (0x008e989b));
     slider_z->addListener (this);
 
-    slider_z->setBounds (536, 408, 160, 88);
+    slider_z->setBounds (576, 416, 160, 88);
 
     but_param.reset (new ImageButton ("but_param"));
     addAndMakeVisible (but_param.get());
@@ -90,7 +90,7 @@ PlugEdit::PlugEdit (PluginwithGuiAudioProcessor& p)
     lab_x->setColour (TextEditor::textColourId, Colours::black);
     lab_x->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    lab_x->setBounds (544, 232, 24, 24);
+    lab_x->setBounds (592, 232, 24, 24);
 
     lab_y.reset (new Label ("lab_y",
                             TRANS("y")));
@@ -101,7 +101,7 @@ PlugEdit::PlugEdit (PluginwithGuiAudioProcessor& p)
     lab_y->setColour (TextEditor::textColourId, Colours::black);
     lab_y->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    lab_y->setBounds (544, 328, 24, 24);
+    lab_y->setBounds (592, 336, 24, 24);
 
     lab_z.reset (new Label ("lab_z",
                             TRANS("z")));
@@ -112,7 +112,7 @@ PlugEdit::PlugEdit (PluginwithGuiAudioProcessor& p)
     lab_z->setColour (TextEditor::textColourId, Colours::black);
     lab_z->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    lab_z->setBounds (544, 424, 24, 24);
+    lab_z->setBounds (592, 440, 24, 24);
 
     but_start.reset (new TextButton ("but_start"));
     addAndMakeVisible (but_start.get());
@@ -122,7 +122,7 @@ PlugEdit::PlugEdit (PluginwithGuiAudioProcessor& p)
     but_start->setColour (TextButton::buttonOnColourId, Colour (0xff01770b));
     but_start->setColour (TextButton::textColourOffId, Colours::black);
 
-    but_start->setBounds (568, 80, 80, 24);
+    but_start->setBounds (616, 80, 80, 24);
 
     but_stop.reset (new TextButton ("but_stop"));
     addAndMakeVisible (but_stop.get());
@@ -132,7 +132,7 @@ PlugEdit::PlugEdit (PluginwithGuiAudioProcessor& p)
     but_stop->setColour (TextButton::buttonOnColourId, Colour (0xffe40000));
     but_stop->setColour (TextButton::textColourOffId, Colours::black);
 
-    but_stop->setBounds (568, 128, 80, 24);
+    but_stop->setBounds (616, 128, 80, 24);
 
     but_tempo.reset (new TextButton ("but_tempo"));
     addAndMakeVisible (but_tempo.get());
@@ -156,6 +156,20 @@ PlugEdit::PlugEdit (PluginwithGuiAudioProcessor& p)
     lab_tempo->setColour (TextEditor::highlightColourId, Colour (0x00808080));
 
     lab_tempo->setBounds (448, 120, 80, 24);
+
+    box_periodes.reset (new ComboBox ("box_periodes"));
+    addAndMakeVisible (box_periodes.get());
+    box_periodes->setEditableText (false);
+    box_periodes->setJustificationType (Justification::centred);
+    box_periodes->setTextWhenNothingSelected (TRANS("Select a number"));
+    box_periodes->setTextWhenNoChoicesAvailable (String());
+    box_periodes->addItem (TRANS("1 "), 1);
+    box_periodes->addItem (TRANS("2"), 2);
+    box_periodes->addItem (TRANS("3"), 3);
+    box_periodes->addSeparator();
+    box_periodes->addListener (this);
+
+    box_periodes->setBounds (264, 80, 150, 24);
 
     cachedImage_logo_png_1 = ImageCache::getFromMemory (logo_png, logo_pngSize);
 
@@ -186,6 +200,7 @@ PlugEdit::~PlugEdit()
     but_stop = nullptr;
     but_tempo = nullptr;
     lab_tempo = nullptr;
+    box_periodes = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -302,6 +317,21 @@ void PlugEdit::buttonClicked (Button* buttonThatWasClicked)
     //[/UserbuttonClicked_Post]
 }
 
+void PlugEdit::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
+{
+    //[UsercomboBoxChanged_Pre]
+    //[/UsercomboBoxChanged_Pre]
+
+    if (comboBoxThatHasChanged == box_periodes.get())
+    {
+        //[UserComboBoxCode_box_periodes] -- add your combo box handling code here..
+        //[/UserComboBoxCode_box_periodes]
+    }
+
+    //[UsercomboBoxChanged_Post]
+    //[/UsercomboBoxChanged_Post]
+}
+
 
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
@@ -327,17 +357,17 @@ BEGIN_JUCER_METADATA
     <IMAGE pos="20 12 96 24" resource="logo_png" opacity="1.0" mode="0"/>
   </BACKGROUND>
   <SLIDER name="slider_x" id="c5015337880dfe51" memberName="slider_x" virtualName=""
-          explicitFocusOrder="0" pos="536 208 160 88" textboxoutline="8e989b"
+          explicitFocusOrder="0" pos="576 208 160 88" textboxoutline="8e989b"
           min="-10.0" max="10.0" int="0.10000000000000000555" style="Rotary"
           textBoxPos="TextBoxBelow" textBoxEditable="0" textBoxWidth="80"
           textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
   <SLIDER name="slider_y" id="f3559ff20f08b37f" memberName="slider_y" virtualName=""
-          explicitFocusOrder="0" pos="536 312 160 88" textboxoutline="8e989b"
+          explicitFocusOrder="0" pos="576 320 160 88" textboxoutline="8e989b"
           min="-10.0" max="10.0" int="0.10000000000000000555" style="Rotary"
           textBoxPos="TextBoxBelow" textBoxEditable="0" textBoxWidth="80"
           textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
   <SLIDER name="slider_z" id="2a61103410dfb52f" memberName="slider_z" virtualName=""
-          explicitFocusOrder="0" pos="536 408 160 88" textboxhighlight="5842a2c8"
+          explicitFocusOrder="0" pos="576 416 160 88" textboxhighlight="5842a2c8"
           textboxoutline="8e989b" min="-10.0" max="10.0" int="0.10000000000000000555"
           style="Rotary" textBoxPos="TextBoxBelow" textBoxEditable="0"
           textBoxWidth="80" textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
@@ -348,26 +378,26 @@ BEGIN_JUCER_METADATA
                resourceOver="" opacityOver="1.0" colourOver="0" resourceDown=""
                opacityDown="1.0" colourDown="0"/>
   <LABEL name="lab_x" id="f4af67e0c3d42203" memberName="lab_x" virtualName=""
-         explicitFocusOrder="0" pos="544 232 24 24" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="592 232 24 24" edTextCol="ff000000"
          edBkgCol="0" labelText="x" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="18.0"
          kerning="0.0" bold="1" italic="0" justification="33" typefaceStyle="Bold"/>
   <LABEL name="lab_y" id="ed7d3a377bef6ec8" memberName="lab_y" virtualName=""
-         explicitFocusOrder="0" pos="544 328 24 24" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="592 336 24 24" edTextCol="ff000000"
          edBkgCol="0" labelText="y" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="18.0"
          kerning="0.0" bold="1" italic="0" justification="33" typefaceStyle="Bold"/>
   <LABEL name="lab_z" id="e8e8160490d3b506" memberName="lab_z" virtualName=""
-         explicitFocusOrder="0" pos="544 424 24 24" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="592 440 24 24" edTextCol="ff000000"
          edBkgCol="0" labelText="z" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="18.0"
          kerning="0.0" bold="1" italic="0" justification="33" typefaceStyle="Bold"/>
   <TEXTBUTTON name="but_start" id="a7f97319386e64bd" memberName="but_start"
-              virtualName="" explicitFocusOrder="0" pos="568 80 80 24" bgColOff="ff01770b"
+              virtualName="" explicitFocusOrder="0" pos="616 80 80 24" bgColOff="ff01770b"
               bgColOn="ff01770b" textCol="ff000000" buttonText="START" connectedEdges="0"
               needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="but_stop" id="c755bd05a1eff6b1" memberName="but_stop" virtualName=""
-              explicitFocusOrder="0" pos="568 128 80 24" bgColOff="ffe40000"
+              explicitFocusOrder="0" pos="616 128 80 24" bgColOff="ffe40000"
               bgColOn="ffe40000" textCol="ff000000" buttonText="STOP" connectedEdges="0"
               needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="but_tempo" id="a221a0792ac7cb3e" memberName="but_tempo"
@@ -380,6 +410,10 @@ BEGIN_JUCER_METADATA
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
          fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
          italic="0" justification="36"/>
+  <COMBOBOX name="box_periodes" id="d800af3f99d4c910" memberName="box_periodes"
+            virtualName="" explicitFocusOrder="0" pos="264 80 150 24" editable="0"
+            layout="36" items="1 &#10;2&#10;3&#10;" textWhenNonSelected="Select a number"
+            textWhenNoItems=""/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

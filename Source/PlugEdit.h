@@ -36,7 +36,8 @@
 */
 class PlugEdit  : public AudioProcessorEditor,
                   public Slider::Listener,
-                  public Button::Listener
+                  public Button::Listener,
+                  public ComboBox::Listener
 {
 public:
     //==============================================================================
@@ -52,6 +53,7 @@ public:
     void resized() override;
     void sliderValueChanged (Slider* sliderThatWasMoved) override;
     void buttonClicked (Button* buttonThatWasClicked) override;
+    void comboBoxChanged (ComboBox* comboBoxThatHasChanged) override;
 
     // Binary resources:
     static const char* logo_png;
@@ -77,6 +79,7 @@ private:
     std::unique_ptr<TextButton> but_stop;
     std::unique_ptr<TextButton> but_tempo;
     std::unique_ptr<Label> lab_tempo;
+    std::unique_ptr<ComboBox> box_periodes;
     Image cachedImage_logo_png_1;
 
 
