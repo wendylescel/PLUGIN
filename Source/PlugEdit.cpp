@@ -257,7 +257,9 @@ void PlugEdit::sliderValueChanged (Slider* sliderThatWasMoved)
         //[UserSliderCode_slider_x] -- add your slider handling code here..
 		if ((*but_start).getToggleState() == true) {
 			float valueToSend = (sliderThatWasMoved->getValue() + 10) / 20;
+			processor.beginParameterChangeGesture(0);
 			processor.setParameterNotifyingHost(0, valueToSend);
+			processor.endParameterChangeGesture(0);
 		}
         //[/UserSliderCode_slider_x]
     }
@@ -266,7 +268,9 @@ void PlugEdit::sliderValueChanged (Slider* sliderThatWasMoved)
         //[UserSliderCode_slider_y] -- add your slider handling code here..
 		if ((*but_start).getToggleState() == true) {
 			float valueToSend = (sliderThatWasMoved->getValue() + 10) / 20;
+			processor.beginParameterChangeGesture(1);
 			processor.setParameterNotifyingHost(1, valueToSend);
+			processor.endParameterChangeGesture(1);
 		}
         //[/UserSliderCode_slider_y]
     }
@@ -275,7 +279,9 @@ void PlugEdit::sliderValueChanged (Slider* sliderThatWasMoved)
         //[UserSliderCode_slider_z] -- add your slider handling code here..
 		if ((*but_start).getToggleState() == true) {
 			float valueToSend = (sliderThatWasMoved->getValue() + 10) / 20;
+			processor.beginParameterChangeGesture(2);
 			processor.setParameterNotifyingHost(2, valueToSend);
+			processor.endParameterChangeGesture(2);
 		}
         //[/UserSliderCode_slider_z]
     }

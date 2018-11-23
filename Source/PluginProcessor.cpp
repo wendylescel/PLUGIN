@@ -56,7 +56,7 @@ const String PluginwithGuiAudioProcessor::getName() const
 
 bool PluginwithGuiAudioProcessor::acceptsMidi() const
 {
-	return false;
+	return true;
    /*#if JucePlugin_WantsMidiInput
     return true;
    #else
@@ -66,7 +66,7 @@ bool PluginwithGuiAudioProcessor::acceptsMidi() const
 
 bool PluginwithGuiAudioProcessor::producesMidi() const
 {
-	return false;
+	return true;
    /*#if JucePlugin_ProducesMidiOutput
     return true;
    #else
@@ -158,6 +158,8 @@ void PluginwithGuiAudioProcessor::processBlock (AudioBuffer<float>& buffer, Midi
 	if (playHead != nullptr && playHead->getCurrentPosition(currentPositionInfo)){
 		tempo = currentPositionInfo.bpm;
 	};
+
+
    /* ScopedNoDenormals noDenormals;
     auto totalNumInputChannels  = getTotalNumInputChannels();
     auto totalNumOutputChannels = getTotalNumOutputChannels();
