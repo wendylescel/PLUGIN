@@ -22,7 +22,7 @@
 //[/Headers]
 
 #include "PlugEdit.h"
-
+#include "Connection.h"
 
 //[MiscUserDefs] You can add your own user definitions and misc code here...
 
@@ -37,6 +37,10 @@ PlugEdit::PlugEdit (PluginwithGuiAudioProcessor& p)
     //[Constructor_pre] You can add your own custom stuff here..
 
     //[/Constructor_pre]
+
+	LEAP_CONNECTION *connection = connect.OpenConnection();
+
+	LeapSetPolicyFlags(*connection, eLeapPolicyFlag_Images, 0);
 
     slider_x.reset (new Slider ("slider_x"));
     addAndMakeVisible (slider_x.get());
@@ -202,6 +206,7 @@ PlugEdit::~PlugEdit()
     lab_tempo = nullptr;
     box_periodes = nullptr;
 
+	connect.CloseConnection();
 
     //[Destructor]. You can add your own custom destruction code here..
     //[/Destructor]
